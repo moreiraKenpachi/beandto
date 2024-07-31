@@ -14,7 +14,7 @@ import dao.DAOUsuarioRepository;
 import model.ModelLogin;
 
 	/****** servlets tambem sao controller *******/
-@WebServlet(urlPatterns = {"/principal/ServletLogin", "/ServletLogin"}) // mapeamento de URL que vem da tela principal(index.jsp)
+@WebServlet(urlPatterns = {"/principal/ServletLogin", "/ServletLogin"}) 
 public class ServletLogin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
@@ -45,12 +45,6 @@ public class ServletLogin extends HttpServlet {
 	// Recebe dados de um formulario (do index.jsp)
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		/**os dados enviados para o console*/
-		//------ System.out.println(request.getParameter("Login"));
-		//------ System.out.println(request.getParameter("senha"));
-		
-		/* request seria uma ideia de escrever em algum lugar*/
-		/* response seria uma ideia de mostrar em algum lugar*/
 		/* pego os dados da tela*/
 		String login = request.getParameter("Login");
 		String senha = request.getParameter("senha");
@@ -66,9 +60,7 @@ public class ServletLogin extends HttpServlet {
 				modellogin.setSenha(senha);
 				
 				if(daoLoginRepository.validarAutenticacao(modellogin)) { // simulando o login
-					/**************modellogin.getLogin().equalsIgnoreCase("admin") &&
-					modellogin.getSenha().equalsIgnoreCase("admin")**********************/
-					
+										
 					modellogin = daoUsuarioRepository.consultaUsuarioLogrado(login);
 					
 					request.getSession().setAttribute("usuario", modellogin.getLogin());
